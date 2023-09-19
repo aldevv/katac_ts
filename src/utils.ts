@@ -1,6 +1,7 @@
 import winston from "winston";
-import { join } from "node:path";
 import fs from "fs";
+import fse from "fs-extra";
+import { DAYS_HOME, KATAS_HOME } from "./main";
 
 function createLogger() {
   let format = winston.format;
@@ -32,37 +33,50 @@ export const createKataDirectories = (
   daysHome: string,
 ): void => {
   if (fs.existsSync(kataHome)) {
-    log.info("kata home found", { KATA_HOME: kataHome });
+    log.debug("kata home found", { KATA_HOME: kataHome });
   } else {
     fs.mkdirSync(kataHome);
-    log.info(`Created ${kataHome}`);
+    log.debug(`Created ${kataHome}`);
   }
 
   if (!fs.existsSync(daysHome)) {
     fs.mkdirSync(daysHome);
-    log.info(`Created ${daysHome}`);
+    log.debug(`Created ${daysHome}`);
   } else {
-    log.info("days home found", { DAYS_HOME: daysHome });
+    log.debug("days home found", { DAYS_HOME: daysHome });
   }
 };
 
-export const getDay = (daysHome: string): string => {
-  const files = fs.readdirSync(daysHome).sort((a, b) => {
+export const getDay = (): string => {
+  const files = fs.readdirSync(DAYS_HOME).sort((a, b) => {
     const aNumber = parseInt(a.replace("day", ""));
     const bNumber = parseInt(b.replace("day", ""));
     return aNumber - bNumber;
   });
   if (files.length === 0) {
-    return daysHome + "/day1";
+    return DAYS_HOME + "/day1";
   }
   const lastDay = files[files.length - 1];
   const dayNumber = parseInt(lastDay.replace("day", ""));
-  return `${daysHome}/day${dayNumber + 1}`;
+  return `${DAYS_HOME}/day${dayNumber + 1}`;
 };
 
 export const createDay = (day: string): void => {
   if (!fs.existsSync(day)) {
     fs.mkdirSync(day);
-    log.info(`Created ${day}`);
+    log.debug(`Created ${day}`);
   }
+};
+
+export const copy = (kata: string, day: string): void => {
+  let kDir = `${KATAS_HOME}/${kata}`;
+  log.info("found kata", { kata: kDir });
+
+  let src = `${kDir}`;
+  let dst = `${day}/${kata}`;
+  log.info("copying directory", {
+    src: src,
+    dst: dst,
+  });
+  fse.copySync(src, dst);
 };
