@@ -1,4 +1,8 @@
 {
+  "version": "1.0.0",
+  "bin": {
+    "katac": "src/main.ts"
+  },
   "name": "katac",
   "module": "src/main.ts",
   "type": "module",
