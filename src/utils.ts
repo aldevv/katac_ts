@@ -3,7 +3,7 @@ import fs from "fs";
 import fse from "fs-extra";
 import { DAYS_HOME, KATAS_HOME } from "./main";
 
-function createLogger() {
+const createLogger = () => {
   let format = winston.format;
   const myFormat = () => {
     return format.printf(
@@ -24,7 +24,7 @@ function createLogger() {
       new winston.transports.File({ filename: "combined.log" }),
     ],
   });
-}
+};
 
 export const log = createLogger();
 

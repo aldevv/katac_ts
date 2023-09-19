@@ -17,3 +17,9 @@ To run:
 ```bash
 bun dev <KATA_NAME>
 ```
+
+To install:
+```bash
+bun make
+mv katac /usr/local/bin
+```

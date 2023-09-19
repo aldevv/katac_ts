@@ -4,7 +4,8 @@
   "type": "module",
   "scripts": {
     "dev": "bun --hot src/main.ts",
-    "debug": "KATA_LOG_LEVEL=debug bun --hot src/main.ts"
+    "debug": "KATA_LOG_LEVEL=debug bun --hot src/main.ts",
+    "make": "bun build ./src/main.ts --compile --outfile katac"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
