@@ -6,7 +6,7 @@ export const DAYS_HOME = process.env.DAYS_HOME || process.cwd() + "/days";
 //TODO: add ignore patterns inside the katas, like if is a git repo ignore the .git folder
 async function main(): Promise<void> {
   try {
-    let day = getDay();
+    let day: string = getDay();
     createDirs(day);
 
     let args: string[] = process.argv.slice(2);

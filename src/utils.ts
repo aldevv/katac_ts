@@ -49,17 +49,19 @@ export const createDirs = (day: string): void => {
 };
 
 export const getDay = (): string => {
-  const files = fs.readdirSync(DAYS_HOME).sort((a, b) => {
-    const aNumber = parseInt(a.replace("day", ""));
-    const bNumber = parseInt(b.replace("day", ""));
-    return aNumber - bNumber;
-  });
+  const files = fs
+    .readdirSync(DAYS_HOME)
+    .sort((a: string, b: string): number => {
+      const aNumber: number = parseInt(a.replace("day", ""));
+      const bNumber: number = parseInt(b.replace("day", ""));
+      return aNumber - bNumber;
+    });
   if (files.length === 0) {
     return DAYS_HOME + "/day1";
   }
-  const lastDay = files[files.length - 1];
-  const dayNumber = parseInt(lastDay.replace("day", ""));
-  return `${DAYS_HOME}/day${dayNumber + 1}`;
+  const lastDay: string = files[files.length - 1];
+  const day: number = parseInt(lastDay.replace("day", ""));
+  return `${DAYS_HOME}/day${day + 1}`;
 };
 
 export const copy = (kata: string, day: string): void => {
