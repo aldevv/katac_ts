@@ -28,23 +28,25 @@ function createLogger() {
 
 export const log = createLogger();
 
-export const createDirs = (day: string): void => {
-  if (fs.existsSync(KATAS_HOME)) {
-    log.debug("kata home found", { KATA_HOME: KATAS_HOME });
-  } else {
+export const createDay = (day: string): void => {
+  if (!fs.existsSync(day)) {
+    fs.mkdirSync(day);
+    log.debug(`Created ${day}`);
+  }
+};
+
+export const createDirs = () => {
+  if (!fs.existsSync(KATAS_HOME)) {
     fs.mkdirSync(KATAS_HOME);
     log.debug(`Created ${KATAS_HOME}`);
+  } else {
+    log.debug("kata home found", { KATA_HOME: KATAS_HOME });
   }
-
   if (!fs.existsSync(DAYS_HOME)) {
     fs.mkdirSync(DAYS_HOME);
     log.debug(`Created ${DAYS_HOME}`);
   } else {
     log.debug("days home found", { DAYS_HOME: DAYS_HOME });
-  }
-  if (!fs.existsSync(day)) {
-    fs.mkdirSync(day);
-    log.debug(`Created ${day}`);
   }
 };
 
@@ -65,14 +67,11 @@ export const getDay = (): string => {
 };
 
 export const copy = (kata: string, day: string): void => {
-  let kDir = `${KATAS_HOME}/${kata}`;
-  log.info("found kata", { kata: kDir });
-
-  let src = `${kDir}`;
-  let dst = `${day}/${kata}`;
+  const src = `${KATAS_HOME}/${kata}`;
+  const dst = `${day}/${kata}`;
   log.info("copying directory", {
-    src: src,
-    dst: dst,
+    src,
+    dst,
   });
   fse.copySync(src, dst);
 };
