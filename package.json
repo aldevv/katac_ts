@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "dev": "bun --hot src/main.ts",
+    "debug": "KATA_LOG_LEVEL=debug bun --hot src/main.ts"
+  },
+  "dependencies": {
+    "@types/node": "^20.6.2",
+    "tsc": "^2.0.4",
+    "typescript": "^5.2.2",
+    "winston": "^3.10.0"
+  }
+}
