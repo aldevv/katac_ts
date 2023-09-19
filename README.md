@@ -1,5 +1,11 @@
 # katac
 
+Configuration (defaults)
+```bash
+export KATAS_HOME="$(pwd)/katas"
+export DAYS_HOME="$(pwd)/days"
+```
+
 To install dependencies:
 
 ```bash
