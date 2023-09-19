@@ -28,22 +28,23 @@ function createLogger() {
 
 export const log = createLogger();
 
-export const createKataDirectories = (
-  kataHome: string,
-  daysHome: string,
-): void => {
-  if (fs.existsSync(kataHome)) {
-    log.debug("kata home found", { KATA_HOME: kataHome });
+export const createDirs = (day: string): void => {
+  if (fs.existsSync(KATAS_HOME)) {
+    log.debug("kata home found", { KATA_HOME: KATAS_HOME });
   } else {
-    fs.mkdirSync(kataHome);
-    log.debug(`Created ${kataHome}`);
+    fs.mkdirSync(KATAS_HOME);
+    log.debug(`Created ${KATAS_HOME}`);
   }
 
-  if (!fs.existsSync(daysHome)) {
-    fs.mkdirSync(daysHome);
-    log.debug(`Created ${daysHome}`);
+  if (!fs.existsSync(DAYS_HOME)) {
+    fs.mkdirSync(DAYS_HOME);
+    log.debug(`Created ${DAYS_HOME}`);
   } else {
-    log.debug("days home found", { DAYS_HOME: daysHome });
+    log.debug("days home found", { DAYS_HOME: DAYS_HOME });
+  }
+  if (!fs.existsSync(day)) {
+    fs.mkdirSync(day);
+    log.debug(`Created ${day}`);
   }
 };
 
@@ -59,13 +60,6 @@ export const getDay = (): string => {
   const lastDay = files[files.length - 1];
   const dayNumber = parseInt(lastDay.replace("day", ""));
   return `${DAYS_HOME}/day${dayNumber + 1}`;
-};
-
-export const createDay = (day: string): void => {
-  if (!fs.existsSync(day)) {
-    fs.mkdirSync(day);
-    log.debug(`Created ${day}`);
-  }
 };
 
 export const copy = (kata: string, day: string): void => {

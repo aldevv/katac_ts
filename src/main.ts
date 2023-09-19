@@ -1,19 +1,13 @@
-import {
-  copy,
-  createDay,
-  createKataDirectories as createDirectories,
-  getDay,
-  log,
-} from "./utils";
+import { copy, createDirs, getDay, log } from "./utils";
 
 export const KATAS_HOME = process.env.KATAS_HOME || process.cwd() + "/katas";
 export const DAYS_HOME = process.env.DAYS_HOME || process.cwd() + "/days";
 
+//TODO: add ignore patterns inside the katas, like if is a git repo ignore the .git folder
 async function main(): Promise<void> {
   try {
-    createDirectories(KATAS_HOME, DAYS_HOME);
     let day = getDay();
-    createDay(day);
+    createDirs(day);
 
     let args: string[] = process.argv.slice(2);
     for (let kata of args) {
