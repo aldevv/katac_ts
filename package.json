@@ -1,19 +1,18 @@
 {
   "version": "1.0.0",
-  "bin": {
-    "katac": "src/main.ts"
-  },
   "name": "katac",
-  "module": "src/main.ts",
+  "module": "src/index.ts",
   "type": "module",
+  "bin": {
+    "katac": "./bin/index.js"
+  },
   "scripts": {
-    "dev": "bun --hot src/main.ts",
-    "debug": "KATA_LOG_LEVEL=debug bun --hot src/main.ts",
-    "make": "bun build ./src/main.ts --compile --outfile katac"
+    "dev": "bun --hot src/index.ts",
+    "debug": "KATA_LOG_LEVEL=debug bun --hot src/index.ts",
+    "make": "bun build ./src/index.ts --compile --outfile katac"
   },
   "dependencies": {
     "fs-extra": "^11.1.1",
-    "tsc": "^2.0.4",
     "typescript": "^5.2.2",
     "winston": "^3.10.0"
   },

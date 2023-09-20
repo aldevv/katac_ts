@@ -1,7 +1,7 @@
 import winston from "winston";
 import fs from "fs";
 import fse from "fs-extra";
-import { DAYS_HOME, KATAS_HOME } from "./main";
+import { DAYS_HOME, KATAS_HOME } from "./index.js";
 
 const createLogger = () => {
   let format = winston.format;

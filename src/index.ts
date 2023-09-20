@@ -1,9 +1,9 @@
-import { copy, createDay, createDirs, getDay, log } from "./utils";
+import { copy, createDay, createDirs, getDay, log } from "./utils.js";
 
 export const KATAS_HOME = process.env.KATAS_HOME || process.cwd() + "/katas";
 export const DAYS_HOME = process.env.DAYS_HOME || process.cwd() + "/days";
 
-async function main(): Promise<void> {
+export async function main(): Promise<void> {
   try {
     createDirs();
     let day: string = getDay();
