@@ -1,4 +1,3 @@
 #!/usr/bin/env node
 
-import { main } from "../dist/index.js";
-main();
+import { main } from "../src/index.js";

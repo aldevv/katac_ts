@@ -5,3 +5,5 @@ days
 .envrc
 tsconfig.tsbuildinfo
 dist
+src/*.js
+src/*.d.ts
