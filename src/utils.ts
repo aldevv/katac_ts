@@ -2,8 +2,14 @@ import winston from "winston";
 import fs from "fs";
 import fse from "fs-extra";
 import { DAYS_HOME, KATAS_HOME } from "./index.js";
+import path from "path";
 
-const createLogger = () => {
+/**
+ * creates a json logger that sets the level using the KATA_LOG_LEVEL environment variable
+ *
+ * @returns logger
+ */
+const createLogger = (): winston.Logger => {
   let format = winston.format;
   const myFormat = () => {
     return format.printf(
@@ -28,6 +34,10 @@ const createLogger = () => {
 
 export const log = createLogger();
 
+/**
+ * Creates the next day directory
+ * @param day the day number
+ */
 export const createDay = (day: string): void => {
   if (!fs.existsSync(day)) {
     fs.mkdirSync(day);
@@ -35,21 +45,27 @@ export const createDay = (day: string): void => {
   }
 };
 
-export const createDirs = () => {
+/**
+ * validates and creates the katas home directory and the days directory
+ */
+export const setupDirs = () => {
   if (!fs.existsSync(KATAS_HOME)) {
     fs.mkdirSync(KATAS_HOME);
-    log.debug(`Created ${KATAS_HOME}`);
+    log.debug(`Created kata home: ${KATAS_HOME}`);
   } else {
     log.debug("kata home found", { KATA_HOME: KATAS_HOME });
   }
   if (!fs.existsSync(DAYS_HOME)) {
     fs.mkdirSync(DAYS_HOME);
-    log.debug(`Created ${DAYS_HOME}`);
+    log.debug(`Created days home ${DAYS_HOME}`);
   } else {
     log.debug("days home found", { DAYS_HOME: DAYS_HOME });
   }
 };
 
+/**
+ * @returns the next day number
+ */
 export const getDay = (): string => {
   const files = fs
     .readdirSync(DAYS_HOME)
@@ -66,9 +82,21 @@ export const getDay = (): string => {
   return `${DAYS_HOME}/day${day + 1}`;
 };
 
+/**
+ * Copies the chosen kata to the given day's directory
+ * @param kata the kata name
+ * @param day the day number
+ */
 export const copy = (kata: string, day: string): void => {
-  const src = `${KATAS_HOME}/${kata}`;
-  const dst = `${day}/${kata}`;
+  const src = path.join(KATAS_HOME, kata);
+  const dst = path.join(day, kata);
+
+  if (!fs.existsSync(src)) {
+    log.error("kata not found", { kata });
+    return;
+  }
+  createDay(day);
+
   log.info("copying directory", {
     src,
     dst,

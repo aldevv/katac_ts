@@ -1,15 +1,26 @@
-import { copy, createDay, createDirs, getDay, log } from "./utils.js";
+import { copy, createDay, setupDirs, getDay, log } from "./utils.js";
+import { Command } from "commander";
 
-export const KATAS_HOME = process.env.KATAS_HOME || process.cwd() + "/katas";
-export const DAYS_HOME = process.env.DAYS_HOME || process.cwd() + "/days";
+const program = new Command();
+program
+  .option("-k, --kata-home <path>", "path to kata folder")
+  .option("-d, --days-home <path>", "path to days folder")
+  .version(require("../package.json").version)
+  .showHelpAfterError()
+  .parse(process.argv);
+
+const opts = program.opts();
+export const KATAS_HOME =
+  opts.kataHome || process.env.KATAS_HOME || process.cwd() + "/katas";
+export const DAYS_HOME =
+  opts.daysHome || process.env.DAYS_HOME || process.cwd() + "/days";
 
 export async function main(): Promise<void> {
   try {
-    createDirs();
+    setupDirs();
     let day: string = getDay();
-    createDay(day);
 
-    let args: string[] = process.argv.slice(2);
+    let args: string[] = program.args;
     for (let kata of args) {
       copy(kata, day);
     }

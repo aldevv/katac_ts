@@ -12,6 +12,7 @@
     "make": "bun build ./src/index.ts --compile --outfile katac"
   },
   "dependencies": {
+    "commander": "^11.0.0",
     "fs-extra": "^11.1.1",
     "typescript": "^5.2.2",
     "winston": "^3.10.0"
@@ -19,8 +20,5 @@
   "devDependencies": {
     "@types/fs-extra": "^11.0.2",
     "bun-types": "latest"
-  },
-  "peerDependencies": {
-    "typescript": "^5.0.0"
   }
 }

@@ -16,7 +16,7 @@
       "bun-types" // add Bun global
     ],
     "noEmit": false,
-    "composite": true
+    "composite": false
   },
   "include": ["src/**/*"]
 }
