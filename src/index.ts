@@ -1,11 +1,12 @@
-import { copy, createDay, setupDirs, getDay, log } from "./utils.js";
+import { copy, setupDirs, getDay, log } from "./utils.js";
 import { Command } from "commander";
+import pkg from "../package.json" assert { type: "json" };
 
 const program = new Command();
 program
   .option("-k, --kata-home <path>", "path to kata folder")
   .option("-d, --days-home <path>", "path to days folder")
-  .version(require("../package.json").version)
+  .version(pkg.version)
   .showHelpAfterError()
   .parse(process.argv);
 

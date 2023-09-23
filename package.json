@@ -1,5 +1,5 @@
 {
-  "version": "1.0.23",
+  "version": "1.0.25",
   "name": "katac",
   "module": "src/index.ts",
   "type": "module",
@@ -9,7 +9,8 @@
   "scripts": {
     "dev": "bun --hot src/index.ts",
     "debug": "KATA_LOG_LEVEL=debug bun --hot src/index.ts",
-    "make": "bun build ./src/index.ts --compile --outfile katac"
+    "build": "bun build ./src/index.ts --compile --outfile katac",
+    "compile": "tsc"
   },
   "dependencies": {
     "commander": "^11.0.0",

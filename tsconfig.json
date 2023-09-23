@@ -1,6 +1,8 @@
 {
   "compilerOptions": {
-    "lib": ["ESNext"],
+    "lib": [
+      "ESNext"
+    ],
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "node",
@@ -11,12 +13,15 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "allowJs": true,
-    "rootDir": "./src",
+    "resolveJsonModule": true,
+    "rootDir": ".",
     "types": [
       "bun-types" // add Bun global
     ],
     "noEmit": false,
     "composite": false
   },
-  "include": ["src/**/*"]
+  "include": [
+    "src/**/*"
+  ]
 }
