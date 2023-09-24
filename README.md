@@ -1,14 +1,14 @@
-# installation
+# Installation
 ```bash
 npm install -g katac
 ```
 
-# usage
+# Usage
 ```bash
-npx katac foo
+npx katac <KATA_NAME>
 ```
 
-# examples
+# Examples
 
 create a kata named foo
 ```bash
@@ -24,15 +24,9 @@ open the day1 folder and start coding
 cd days/day1/foo
 ```
 
-## Options
-
-- **<KATA_NAME>**: The name of the kata to run.
-
-- **--day-home <DAY_HOME>**: The directory where each day's kata is kept. Defaults to ./days
-
-- **--katas-home <KATAS_HOME>**: The directory containing the each kata's starting point. Defaults to ./katas
-
-## Environment variables
-
-- **KATAS_HOME**: The default katas home directory.
-- **DAYS_HOME**: The default day home directory.
+## Parameters
+|Parameter        |Description                                                        |Example     |
+|-----------------|-------------------------------------------------------------------|------------|
+|**<KATA_NAME>**  |name of the kata to run                                            |QuickSort   |
+|**--days-home**  |folder where new days are going to be created. Defaults to ./days  |~/days      |
+|**--katas-home** |folder where the katas are kept . Defaults to ./katas |~/katas     |
