@@ -1,5 +1,5 @@
 {
-  "version": "1.0.29",
+  "version": "1.1.1-alpha",
   "name": "katac",
   "module": "src/index.ts",
   "type": "module",

@@ -1,0 +1,60 @@
+.TH "KATAC" "1" "September 2023" "1.1.0"
+.SH NAME
+.P
+katac \- run coding katas
+.SH SYNOPSIS
+.P
+\fBkatac\fR [\-\-day\-home \fI<DAY_HOME>\fR] [\-\-katas\-home \fI<KATAS_HOME>\fR] \fI<KATA_NAME>\fR
+.SH DESCRIPTION
+.P
+\fBkatac\fR is a tool to do daily katas \. katas are located in the \fBKATAS_HOME\fR directory, defaults to \./katas and the days are put in the \fBDAY_HOME\fR directory which defaults to \./days\.
+.SH EXAMPLES
+.P
+create a kata named foo
+.RS 2
+.nf
+mkdir \-p katas/foo
+touch katas/foo/bar\.go
+.fi
+.RE
+.P
+run katac
+.RS 2
+.nf
+katac foo
+.fi
+.RE
+.P
+open the day1 folder and start coding
+.RS 2
+.nf
+cd days/day1/foo
+.fi
+.RE
+.SH OPTIONS
+
+.RS 1
+.IP \(bu 2
+\fB<KATA_NAME>\fR: The name of the kata to run\.
+.IP \(bu 2
+\fB\-\-day\-home <DAY_HOME>\fR: The directory where each day's kata is kept\. Defaults to \./days
+.IP \(bu 2
+\fB\-\-katas\-home <KATAS_HOME>\fR: The directory containing the each kata's starting point\. Defaults to \./katas
+
+.RE
+.SH ENVIRONMENT
+
+.RS 1
+.IP \(bu 2
+\fBKATAS_HOME\fR: The default katas home directory\.
+.IP \(bu 2
+\fBDAYS_HOME\fR: The default day home directory\.
+
+.RE
+.SH SEE ALSO
+.P
+\fBbun\fR(1)
+.SH AUTHOR
+.P
+thealdevv@gmail.com
+

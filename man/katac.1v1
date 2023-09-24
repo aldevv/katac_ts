@@ -1,0 +1,57 @@
+.\" Manpage for katac.
+.\" Contact aldevv@example.com to correct errors or typos.
+.TH man 8 "24 Feb 2023" "1.0" "katac man page"
+.SH NAME
+katac \- run coding katas
+.SH SYNOPSIS
+.B katac
+.I <KATA_NAME>
+[--day-home
+.I <DAY_HOME>]
+[--katas-home
+.I <KATAS_HOME>]
+.SH DESCRIPTION
+.PP
+\fBkatac\fR is a tool to run coding katas. Katas are located in the katas home
+directory, which defaults to the current directory. Results are saved in
+the day home directory, which also defaults to the current directory.
+.PP
+To install dependencies, run:
+.PP
+.RS 4
+bun install
+.RE
+.PP
+To run a kata:
+.PP
+.RS 4
+bun dev <KATA_NAME>
+.RE
+.PP
+To install katac:
+.PP
+.RS 4
+bun make
+mv katac /usr/local/bin
+.RE
+.SH OPTIONS
+.TP
+.B <KATA_NAME>
+The name of the kata to run.
+.TP
+.B --day-home <DAY_HOME>
+The directory to save kata results for the day. Defaults to the current directory.
+.TP
+.B --katas-home <KATAS_HOME>
+The directory containing the kata files. Defaults to the current directory.
+.SH ENVIRONMENT
+.TP
+.B KATAS_HOME
+The default katas home directory.
+.TP
+.B DAYS_HOME
+The default day home directory.
+.SH SEE ALSO
+.BR bun (1)
+.SH AUTHOR
+thealdevv@gmail.com
