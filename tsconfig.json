@@ -1,8 +1,6 @@
 {
   "compilerOptions": {
-    "lib": [
-      "ESNext"
-    ],
+    "lib": ["ESNext"],
     "module": "esnext",
     "target": "esnext",
     "moduleResolution": "bundler",
@@ -12,7 +10,7 @@
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "allowJs": true,
+    "allowJs": false,
     "resolveJsonModule": true,
     "rootDir": ".",
     "types": [
@@ -21,8 +19,6 @@
     "noEmit": false,
     "composite": false
   },
-  "include": [
-    "src/**/*",
-    "package.json"
-  ]
+  "include": ["./**/*"],
+  "exclude": ["config.js"]
 }
