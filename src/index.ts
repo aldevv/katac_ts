@@ -1,6 +1,7 @@
-import { copy, setupDirs, getDay, log } from "./utils.js";
+import { copy, setupDirs, getDay, log, copyAll } from "./utils.js";
 import { Command } from "commander";
 import pkg from "../package.json" assert { type: "json" };
+// import { config } from "../config.js";
 
 const program = new Command();
 program
@@ -16,14 +17,24 @@ export const KATAS_HOME =
 export const DAYS_HOME =
   opts.daysHome || process.env.DAYS_HOME || process.cwd() + "/days";
 
+const config = {
+  // possible modes are "generate" "random"
+  mode: "generate",
+  maxPerDay: 10,
+  katas: ["Queue"],
+};
+
 export async function main(): Promise<void> {
   try {
     setupDirs();
     let day: string = getDay();
-
-    let args: string[] = program.args;
-    for (let kata of args) {
-      copy(kata, day);
+    let katas: string[] = program.args.length > 0 ? program.args : config.katas;
+    switch (config.mode) {
+      case "generate":
+        copyAll(katas, day, config.maxPerDay);
+      case "random":
+        katas.sort(() => Math.random() - 0.5);
+        copyAll(katas, day, config.maxPerDay);
     }
   } catch (err) {
     log.error(err);

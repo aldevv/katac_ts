@@ -103,3 +103,13 @@ export const copy = (kata: string, day: string): void => {
   });
   fse.copySync(src, dst);
 };
+
+export const copyAll = (
+  katas: string[],
+  day: string,
+  maxPerDay: number,
+): void => {
+  for (let i = 0; i < katas.length && i < maxPerDay; i++) {
+    copy(katas[i], day);
+  }
+};
